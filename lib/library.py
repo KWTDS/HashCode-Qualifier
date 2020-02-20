@@ -7,9 +7,13 @@ class Library:
         self.signt = signt
         self.booksperday = booksperday
         self.books = books
+        self.signing = False
 
     def timescore(self):
         self.signt + len(self.books) / self.booksperday
 
     def bscore(self):
         sum(map(lambda b: b.hscore(), self.books))
+
+    def signup(self):
+        self.signing = True
