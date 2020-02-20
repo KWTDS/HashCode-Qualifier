@@ -28,11 +28,18 @@ for i in range(numOfLibs):
 
     libs.append(Library(i, int(library[1]), int(library[2]), libBooks))
 
-maxWait = [i.signt for i in libs]
+# print([i.hscore() for i in libs])
+libs.sort(key=Library.hscore, reverse=True)
+# print([i.hscore() for i in libs])
+
+signedLibs = list()
+
 
 for day in range(days):
-    for library in libs:
-        if library.signt == max(maxWait) and signing == False:
-            library.signup()
-            signing = library.signing
+    if len(libs) > 0:
+        library = libs[0]
+        if not library.signup(day):
+            signedLibs.append(libs.pop(0))
 
+    if (len(signedLibs) > 0):
+        for i in signedLibs:
