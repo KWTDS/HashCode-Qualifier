@@ -1,6 +1,4 @@
 
-def __hscore_compute(score,count):
-
 class Book:
     def __init__(self,id,score):
         self.__hscore = None
