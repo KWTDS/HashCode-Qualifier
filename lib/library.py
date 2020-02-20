@@ -13,7 +13,7 @@ class Library:
         return self.signt + len(self.books)/self.booksperday
 
     def bscore(self):
-        return sum(map(lambda b: b.hscore()),self.books)
+        return sum(map(lambda b: b.hscore(), self.books))
 
     def hscore(self):
         self.timescore()*0.75+self.bscore()*0.25
