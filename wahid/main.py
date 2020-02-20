@@ -11,6 +11,8 @@ scores = [int(i) for i in file.pop(0)]
 libs = list()
 books = dict()
 
+signing = False
+
 for i in range(numOfLibs):
     libBooks = list()
     library = file.pop(0)
@@ -26,7 +28,11 @@ for i in range(numOfLibs):
 
     libs.append(Library(i, int(library[1]), int(library[2]), libBooks))
 
-# for day in range(days):
-print(f'{libs[0].signing}')
-libs[0].signup()
-print(f'{libs[0].signing}')
+maxWait = [i.signt for i in libs]
+
+for day in range(days):
+    for library in libs:
+        if library.signt == max(maxWait) and signing == False:
+            library.signup()
+            signing = library.signing
+
