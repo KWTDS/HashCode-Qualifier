@@ -6,7 +6,9 @@ class Library:
         self.id = id
         self.signt = signt - 1
         self.booksperday = booksperday
+        # self.books = books.sort(key=Book.hscore, reverse=True)
         self.books = books
+        self.scannedBooks = list()
         self.signing = False
         self.heuristic = None
         self.signDay = None
@@ -18,8 +20,12 @@ class Library:
         return sum(map(lambda b: b.hscore(), self.books))
 
     def hscore(self):
-        self.heuristic = self.timescore() * 0.75 + self.bscore() * 0.25
-        return self.heuristic
+        return self.timescore() * 0.75 + self.bscore() * 0.25
+
+    def scanBooks(self):
+        # if (len(self.books) > 0):
+        for i in range(min(self.booksperday, len(self.books))):
+            self.scannedBooks.append(self.books.pop(0))
 
     def signup(self, day):
         if not self.signing:
@@ -27,6 +33,4 @@ class Library:
             self.signDay = day
         elif day - self.signDay == self.signt and self.signing:
             self.signing = False
-        # print(f'{day}, {self.signDay}, {day - self.signDay}')
-
         return self.signing

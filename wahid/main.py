@@ -24,16 +24,16 @@ for i in range(numOfLibs):
             books[int(n)] = 1
 
     for n in books:
+        print(n)
         libBooks.append(Book(n, scores[n], books[n]))
 
     libs.append(Library(i, int(library[1]), int(library[2]), libBooks))
 
-# print([i.hscore() for i in libs])
 libs.sort(key=Library.hscore, reverse=True)
-# print([i.hscore() for i in libs])
 
 signedLibs = list()
 
+signedBooks = dict()
 
 for day in range(days):
     if len(libs) > 0:
@@ -42,4 +42,18 @@ for day in range(days):
             signedLibs.append(libs.pop(0))
 
     if (len(signedLibs) > 0):
-        for i in signedLibs:
+        for l in signedLibs:
+            l.scanBooks()
+
+
+
+# output = open("answers/" + files[0] + "_answer.txt", "w")
+string = f'{len(signedLibs)}\n'
+for i in signedLibs:
+    string += f'{i.id} {len(i.scannedBooks)}\n'
+    for n in i.scannedBooks:
+        print(i.scannedBooks)
+        string += f'{n.id} '
+    string += "\n"
+print(string)
+# output.write(string)
